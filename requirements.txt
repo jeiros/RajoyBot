@@ -12,7 +12,6 @@ prompt-toolkit==1.0.9
 pip==9.0.1
 pickleshare==0.7.4
 pexpect==4.0.1
-path.py==0.0.0
 oauthlib==2.0.1
 ipython==5.1.0
 ipython-genutils==0.1.0
