@@ -1,0 +1,25 @@
+name: RajoyBot
+channels: !!python/tuple
+- defaults
+- acellera
+- omnia
+- r
+dependencies:
+- openssl=1.0.2j=0
+- pip=9.0.1=py34_0
+- python=3.4.5=0
+- readline=6.2=2
+- setuptools=27.2.0=py34_0
+- sqlite=3.13.0=0
+- tk=8.5.18=0
+- wheel=0.29.0=py34_0
+- xz=5.2.2=0
+- zlib=1.2.8=3
+- pip:
+  - oauthlib==2.0.1
+  - requests==2.12.1
+  - requests-oauthlib==0.7.0
+  - six==1.10.0
+  - tweepy==3.5.0
+prefix: /Users/je714/anaconda3/envs/RajoyBot
+
