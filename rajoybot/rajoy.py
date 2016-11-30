@@ -5,6 +5,7 @@ from tweepy import Stream, StreamListener
 import time
 import random
 
+
 class MyStreamListener(StreamListener):
 
     """docstring for Listener"""
@@ -18,6 +19,7 @@ class MyStreamListener(StreamListener):
 
     def on_error(self, status):
         print(status)
+
 
 def authenticate(config):
     'Authenticate with OAuth'
@@ -34,8 +36,10 @@ def get_all_tweets(api, screen_name):
     new_tweets = api.user_timeline(screen_name=screen_name,
                                    count=200,
                                    include_rts=False)
-    # Don't include tweets that start with 'RT' although they shouldn't be there some show up
-    all_tweets.extend([tweet for tweet in new_tweets if not tweet.text.startswith('RT ')])
+    # Don't include tweets that start with 'RT' although they shouldn't be
+    # there some show up
+    all_tweets.extend(
+        [tweet for tweet in new_tweets if not tweet.text.startswith('RT ')])
 
     # save the id of the oldes tweets minus one
     oldest = all_tweets[-1].id - 1
@@ -46,13 +50,14 @@ def get_all_tweets(api, screen_name):
                                        count=200,
                                        max_id=oldest,
                                        include_rts=False)
-        # Don't include tweets that start with 'RT' although they shouldn't be there some show up
-        all_tweets.extend([tweet for tweet in new_tweets if not tweet.text.startswith('RT ')])
+        # Don't include tweets that start with 'RT' although they shouldn't be
+        # there some show up
+        all_tweets.extend(
+            [tweet for tweet in new_tweets if not tweet.text.startswith('RT ')])
 
         oldest = all_tweets[-1].id - 1
 
     out_tweets = [tweet.text for tweet in all_tweets]
-
 
     return out_tweets
 
@@ -61,7 +66,7 @@ if __name__ == '__main__':
     myStreamListener = MyStreamListener()
     myStream = Stream(auth=api.auth, listener=myStreamListener)
 
-
     while True:
-        api.update_status('Random number is %d #RajoySays' % random.randint(0, 1000))
+        api.update_status('Random number is %d #RajoySays' %
+                          random.randint(0, 1000))
         time.sleep(300)
