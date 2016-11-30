@@ -1,1 +1,1 @@
-worker: rajoybot/rajoy.py
+worker: python rajoybot/rajoy.py
