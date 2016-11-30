@@ -2,7 +2,8 @@ import csv
 import tweepy
 import config  # File with Twitter's API keys. Hidden from Version Control
 from tweepy import Stream, StreamListener
-
+import time
+import random
 
 class MyStreamListener(StreamListener):
 
@@ -33,6 +34,7 @@ def get_all_tweets(api, screen_name):
     new_tweets = api.user_timeline(screen_name=screen_name,
                                    count=200,
                                    include_rts=False)
+    # Don't include tweets that start with 'RT' although they shouldn't be there some show up
     all_tweets.extend([tweet for tweet in new_tweets if not tweet.text.startswith('RT ')])
 
     # save the id of the oldes tweets minus one
@@ -44,6 +46,7 @@ def get_all_tweets(api, screen_name):
                                        count=200,
                                        max_id=oldest,
                                        include_rts=False)
+        # Don't include tweets that start with 'RT' although they shouldn't be there some show up
         all_tweets.extend([tweet for tweet in new_tweets if not tweet.text.startswith('RT ')])
 
         oldest = all_tweets[-1].id - 1
@@ -57,8 +60,8 @@ if __name__ == '__main__':
     api = authenticate(config)
     myStreamListener = MyStreamListener()
     myStream = Stream(auth=api.auth, listener=myStreamListener)
-    out_tweets = get_all_tweets(api, 'marianorajoy')
-    with open('rajoy_tweets.txt', 'w') as f:
-        f.write('\n'.join(str(i) for i in out_tweets))
 
 
+    while True:
+        api.update_status('Random number is %d #RajoySays' % random.randint(0, 1000))
+        time.sleep(300)

@@ -1,0 +1,1 @@
+worker: rajoybot/rajoy.py
