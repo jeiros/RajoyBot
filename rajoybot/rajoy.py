@@ -1,5 +1,5 @@
 import tweepy
-import config
+import config  # File with Twitter's API keys. Hidden from Version Control
 
 auth = tweepy.OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
 auth.set_access_token(config.ACCESS_KEY, config.ACCESS_SECRET)
