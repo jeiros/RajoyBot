@@ -69,4 +69,4 @@ if __name__ == '__main__':
     while True:
         api.update_status('Random number is %d #RajoySays' %
                           random.randint(0, 1000))
-        time.sleep(300)
+        time.sleep(150)
